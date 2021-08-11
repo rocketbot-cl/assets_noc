@@ -43,21 +43,25 @@ if module == "loginNOC":
     email_ = config.get('USER', 'user')
     pass_ = config.get('USER', 'password')
     instance_ = config.get('USER', 'key')
+    apikey_ = config.get('USER', 'apiKey')
     server_ = config.get('NOC', 'server')
 
     try:
-        data = {'email': email_, 'password': pass_}
-        res = requests.post(server_ + '/api/auth/login', data,
-                            headers={'content-type': 'application/x-www-form-urlencoded'})
-
-        if res.status_code == 200:
-            res = res.json()
-            if res['success']:
-                token = res['data']
-            else:
-                raise Exception(res['message'])
+        if apikey_ is not None:
+            token = apikey_
         else:
-            raise Exception(res.json()['message'])
+            data = {'email': email_, 'password': pass_}
+            res = requests.post(server_ + '/api/auth/login', data,
+                                headers={'content-type': 'application/x-www-form-urlencoded'})
+
+            if res.status_code == 200:
+                res = res.json()
+                if res['success']:
+                    token = res['data']
+                else:
+                    raise Exception(res['message'])
+            else:
+                raise Exception(res.json()['message'])
 
     except Exception as e:
         PrintException()
