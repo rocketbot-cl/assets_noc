@@ -43,7 +43,10 @@ if module == "loginNOC":
     email_ = config.get('USER', 'user')
     pass_ = config.get('USER', 'password')
     instance_ = config.get('USER', 'key')
-    apikey_ = config.get('USER', 'apiKey')
+    try:
+        apikey_ = config.get('USER', 'apiKey')
+    except:
+        pass
     server_ = config.get('NOC', 'server')
 
     try:
