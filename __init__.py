@@ -46,11 +46,11 @@ if module == "loginNOC":
     try:
         apikey_ = config.get('USER', 'apiKey')
     except:
-        pass
+        apikey_ = ""
     server_ = config.get('NOC', 'server')
 
     try:
-        if apikey_ is not None:
+        if apikey_ != "":
             token = apikey_
         else:
             data = {'email': email_, 'password': pass_}
