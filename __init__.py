@@ -25,49 +25,38 @@ Para instalar librerias se debe ingresar por terminal a la carpeta "libs"
 """
 import requests
 import configparser
+import traceback
 global token
 global instance_
 global server_
 
+base_path = tmp_global_obj["basepath"]
+cur_path = base_path + "modules" + os.sep + "assets_noc" + os.sep + "libs" + os.sep
+if cur_path not in sys.path:
+    sys.path.append(cur_path)
+
+import traceback
+from orchestator import OrchestatorCommon
+
 """
     Obtengo el modulo que fue invocado
 """
+global orchestator_service
+
 module = GetParams("module")
 
 if module == "loginNOC":
-
+    username = GetParams("username")
+    password = GetParams("password")
+    server_url = GetParams("server_url")
+    api_key = GetParams("api_key")
     ruta_ = GetParams("ruta_")
-
-    config = configparser.ConfigParser()
-    config.read(ruta_)
-    email_ = config.get('USER', 'user')
-    pass_ = config.get('USER', 'password')
-    instance_ = config.get('USER', 'key')
     try:
-        apikey_ = config.get('USER', 'apiKey')
-    except:
-        apikey_ = ""
-    server_ = config.get('NOC', 'server')
-
-    try:
-        if apikey_ != "":
-            token = apikey_
-        else:
-            data = {'email': email_, 'password': pass_}
-            res = requests.post(server_ + '/api/auth/login', data,
-                                headers={'content-type': 'application/x-www-form-urlencoded'})
-
-            if res.status_code == 200:
-                res = res.json()
-                if res['success']:
-                    token = res['data']
-                else:
-                    raise Exception(res['message'])
-            else:
-                raise Exception(res.json()['message'])
-
+        orchestrator_service = OrchestatorCommon(server=server_url, user=username, password=password, ini_path=ruta_, apikey=api_key)
+        token = orchestrator_service.get_authorization_token()
     except Exception as e:
         PrintException()
+        print("Traceback: ", traceback.print_exc())
         raise (e)
 
 if module == "getData":
