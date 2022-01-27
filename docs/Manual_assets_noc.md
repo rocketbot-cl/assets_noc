@@ -6,7 +6,7 @@
   
 Módulo para obtener asset de Rocketbot NOC  
   
-![banner](https://i.imgur.com/TiALqcK.jpg)
+![banner](/docs/imgs/Banner_assets_noc.png)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
@@ -25,6 +25,8 @@ Login NOC
 |Servidor|URL del servidor donde se conecta|https://roc.myrb.io/|
 |-------------------------------------------------------------------------------------------------------|||
 |API Key|API Key para conectarse al servidor|224f1e15-aab7-4632-85ce-321938cb096b|
+|--------------------------------------------------------------------------------------------------------|||
+|Instancia|Instancia a conectarse|224f1e15-aab7-4632-85ce-321938cb096b|
 |--------------------------------------------------------------------------------------------------------|||
 |Ruta Archivo .ini|Archivo .ini con las credenciales del usuario|C:/Users/User/Desktop/archivo.ini|
 

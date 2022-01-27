@@ -108,6 +108,30 @@
             "css": "col-md-12 px-5"
           },
           {
+            "type": "input",
+            "placeholder": "224f1e15-aab7-4632-85ce-321938cb096b",
+            "title": {
+              "es": "Instancia",
+              "en": "Instance:"
+            },
+            "description":{
+                "es": "Instancia a conectarse",
+                "en": "Instance to connect"
+                
+                },
+            "id": "api_key",
+            "css": "col-md-12"
+          },
+          {
+            "type": "label",
+            "title": {
+              "es": "--------------------------------------------------------------------------------------------------------",
+              "en": "--------------------------------------------------------------------------------------------------------"
+            },
+            "id": "label",
+            "css": "col-md-12 px-5"
+          },
+          {
             "type": "file_select",
             "placeholder": {
               "es": "C:/Users/User/Desktop/archivo.ini",

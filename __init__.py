@@ -48,11 +48,14 @@ module = GetParams("module")
 if module == "loginNOC":
     username = GetParams("username")
     password = GetParams("password")
-    server_url = GetParams("server_url")
+    server_ = GetParams("server_url")
     api_key = GetParams("api_key")
     ruta_ = GetParams("ruta_")
+    instance_ = GetParams("instance_")
     try:
-        orchestrator_service = OrchestatorCommon(server=server_url, user=username, password=password, ini_path=ruta_, apikey=api_key)
+        orchestrator_service = OrchestatorCommon(server=server_, user=username, password=password, ini_path=ruta_, apikey=api_key)
+        if server_ is None:
+            server_ = orchestrator_service.server
         token = orchestrator_service.get_authorization_token()
     except Exception as e:
         PrintException()
