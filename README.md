@@ -11,6 +11,11 @@ Módulo para obtener asset de Rocketbot NOC
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
+# Como usar este modulo
+
+Debemos tener habilitado el uso del orquestador asi como el usuario, contraseña, URL del 
+servidor.
+
 
 ## Overview
 
