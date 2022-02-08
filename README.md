@@ -4,17 +4,16 @@
 
 # Assets_NOC
   
-Módulo para obtener asset de Rocketbot NOC  
+Module to get asset from Rocketbot NOC 
 
-## Howto install this module
+## How to install this module
   
 __Download__ and __install__ the content in 'modules' folder in Rocketbot path  
 
 
-# Como usar este modulo
+# How to use
 
-Debemos tener habilitado el uso del orquestador asi como el usuario, contraseña, URL del 
-servidor.
+We must have enabled the use of the orchestrator as well as the user, password, URL of the server.
 
 
 ## Overview
@@ -24,7 +23,7 @@ servidor.
 Login NOC using credentials such as username and password, API Key and noc.ini file.
 
 2. Get an Specific Asset  
-Get an Specific Asset
+Obtains the specific asset that is indicated
 
 3. Get All Assets  
 Get all the Assets and assign them to the corresponding variables  

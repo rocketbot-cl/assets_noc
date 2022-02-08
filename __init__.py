@@ -57,6 +57,13 @@ if module == "loginNOC":
         if server_ is None:
             server_ = orchestrator_service.server
         token = orchestrator_service.get_authorization_token()
+        headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
+        res = requests.post(server_ + '/api/assets/list',
+                            headers=headers)
+
+        if res.status_code != 200:
+            raise Exception("El API Key es incorrecto")
+        
     except Exception as e:
         PrintException()
         print("Traceback: ", traceback.print_exc())
@@ -98,7 +105,7 @@ if module == "getData":
 
 if module == "getAllData":
 
-    name_ = GetParams("name_")
+    # name_ = GetParams("name_")
     var_ = GetParams("var_")
 
     try:
