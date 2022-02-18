@@ -17,7 +17,7 @@ __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de ro
 
 # Como usar este modulo
 
-Debemos tener habilitado el uso del orquestador asi como el usuario, contraseña, URL del servidor.
+Debemos tener habilitado el uso del orquestador asi como el e-mail, contraseña, URL del servidor.
 
 
 
@@ -25,14 +25,12 @@ Debemos tener habilitado el uso del orquestador asi como el usuario, contraseña
 
 ### Login NOC
   
-Inicie sesión en NOC utilizando credenciales como nombre de usuario y contraseña, clave API y archivo noc.ini.
+Inicie sesión en NOC utilizando e-mail o contraseña, clave API y archivo noc.ini.
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |URL Servidor|URL del servidor a donde se conecta|https://roc.myrb.io/|
-|Nombre de usuario|Nombre de usuario|User1|
-|Contraseña|Contraseña del usuario|Password|
-|API Key|API Key para conectarse al servidor|224f1e15-aab7-4632-85ce-321938cb096b|
-|Ruta Archivo .ini|Archivo .ini con las credenciales del usuario|C:/Users/User/Desktop/archivo.ini|
+|Seleccione un metodo para conectarse al Orquestador|Opciones para iniciar sesión en R.O.C, se puede usar las credenciales del usuario, API Key o con el archivo noc.ini||
+|Asignar resultado a Variable|Variable donde se almacenara el estado de la conexion, devuelve True si es exitosa o False en el caso contrario|Variable|
 
 ### Obtener Asset Específico
   
