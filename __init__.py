@@ -43,6 +43,7 @@ from orchestator import OrchestatorCommon
 """
 global orchestator_service
 global path_ini_assetnoc_
+global instance_key_ini
 
 module = GetParams("module")
 
@@ -94,6 +95,9 @@ if module == "loginNOC":
 
         elif path:
             try:
+                config = configparser.ConfigParser()
+                config.read(path)
+                instance_key_ini = config['USER']['key']
                 orchestrator_service = OrchestatorCommon(server=server_, user=username, password=password, ini_path=path, apikey=apikey)
                 if server_ is None:
                     server_ = orchestrator_service.server
@@ -114,11 +118,12 @@ if module == "loginNOC":
         raise (e)
 
 if module == "getData":
-
     name_ = GetParams("name_")
     var_ = GetParams("var_")
     process_ = GetParams("process_")
     instance_ = GetParams("instance_")
+    if not instance_:
+        instance_ = instance_key_ini
     try:
         data = {'name': name_, 'instance': instance_}
         if process_:
