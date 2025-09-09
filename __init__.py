@@ -162,8 +162,7 @@ if module == "getAllData":
             res = res.json()
             if res['success']:
                 tmp = [{'name':a['name'],'value':a['value']} for a in res['data']]
-                for b in tmp:
-                    SetVar(b['name'],b['value'])
+                SetVar(var_, tmp)
             else:
                 raise Exception(res['message'])
         else:
