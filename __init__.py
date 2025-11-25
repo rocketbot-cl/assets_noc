@@ -96,7 +96,9 @@ if module == "loginNOC":
         elif path:
             try:
                 config = configparser.ConfigParser()
-                config.read(path)
+                if not config.read(path):
+                    raise FileNotFoundError(f"No se pudo encontrar o leer el archivo .ini en la ruta: {path}")
+                
                 instance_key_ini = config['USER']['key']
                 orchestrator_service = OrchestatorCommon(server=server_, user=username, password=password, ini_path=path, apikey=apikey)
                 if server_ is None:
@@ -105,10 +107,19 @@ if module == "loginNOC":
                 headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
                 res = requests.post(server_ + '/api/assets/list',
                                     headers=headers)
+                res.raise_for_status()
                 conx = True
                 SetVar(var_, conx)
-            except:
-                raise Exception("La direccion del archivo .ini es incorrecta")
+            except FileNotFoundError as e:
+                raise Exception(f"Error con el archivo de configuración: {e}")
+            except KeyError as e:
+                raise Exception(f"El archivo .ini no tiene el formato correcto. Falta la sección [USER] o la clave 'key'.")
+            except requests.exceptions.RequestException as e:
+                raise Exception(f"Error de conexión al intentar autenticar: {e}")
+            except Exception as e:
+                # Captura cualquier otro error inesperado
+                print(traceback.format_exc())
+                raise Exception(f"Ocurrió un error inesperado durante el login con .ini: {e}")
             
     except Exception as e:
         PrintException()
@@ -162,7 +173,9 @@ if module == "getAllData":
             res = res.json()
             if res['success']:
                 tmp = [{'name':a['name'],'value':a['value']} for a in res['data']]
-                SetVar(var_, tmp)
+                SetVar(var_,tmp)
+                for b in tmp:
+                    SetVar(b['name'],b['value'])
             else:
                 raise Exception(res['message'])
         else:
