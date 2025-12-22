@@ -4,29 +4,28 @@
 
 # Assets_NOC
   
-Module to get asset from Rocketbot NOC  
+Module to get assets from Rocketbot NOC  
+
+*Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
 ## How to install this module
   
-__Download__ and __install__ the content in 'modules' folder in Rocketbot path  
-
-
-# How to use
-
-We must have enabled the use of the orchestrator as well as the e-mail, password, URL of the server.
+To install the module in Rocketbot Studio, it can be done in two ways:
+1. Manual: __Download__ the .zip file and unzip it in the modules folder. The folder name must be the same as the module and inside it must have the following files and folders: \__init__.py, package.json, docs, example and libs. If you have the application open, refresh your browser to be able to use the new module.
+2. Automatic: When entering Rocketbot Studio on the right margin you will find the **Addons** section, select **Install Mods**, search for the desired module and press install.  
 
 
 ## Overview
 
 
 1. Login NOC  
-Login to NOC using email or password, API key and noc.ini file.
+Login NOC using credentials such as e-mail and password, API Key and noc.ini file.
 
 2. Get an Specific Asset  
 Obtains the specific asset that is indicated
 
 3. Get All Assets  
-Get all the Assets and assign them to the corresponding variables  
+Get all the Assets and assign them to the corresponding variable  
 
 
 

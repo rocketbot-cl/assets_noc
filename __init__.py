@@ -60,6 +60,10 @@ if module == "loginNOC":
         password = iframe.get("password", "")
         apikey = iframe.get("apikey", "")
         path = iframe.get("path_ini", GetParams("ruta_"))
+        ignore_ssl = iframe.get("ignore_ssl", False)
+        if isinstance(ignore_ssl, str):
+            ignore_ssl = ignore_ssl.lower() == "true"
+        verify_ssl = not ignore_ssl
         path_ini_assetnoc_ = path
 
         if password and username:
@@ -70,7 +74,7 @@ if module == "loginNOC":
                 token = orchestrator_service.get_authorization_token()
                 headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
                 res = requests.post(server_ + '/api/assets/list',
-                                    headers=headers)
+                                    headers=headers, verify=verify_ssl)
                 conx = True
                 SetVar(var_, conx)
             except:
@@ -84,7 +88,7 @@ if module == "loginNOC":
             token = orchestrator_service.get_authorization_token()
             headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
             res = requests.post(server_ + '/api/assets/list',
-                                headers=headers)
+                                headers=headers, verify=verify_ssl)
 
             if res.status_code != 200:
 
@@ -106,7 +110,7 @@ if module == "loginNOC":
                 token = orchestrator_service.get_authorization_token()
                 headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
                 res = requests.post(server_ + '/api/assets/list',
-                                    headers=headers)
+                                    headers=headers, verify=verify_ssl)
                 res.raise_for_status()
                 conx = True
                 SetVar(var_, conx)
