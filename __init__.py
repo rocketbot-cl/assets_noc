@@ -167,6 +167,7 @@ if module == "getAllData":
 
     # name_ = GetParams("name_")
     var_ = GetParams("var_")
+    extra_data = GetParams("extra_data_")
 
     try:
         headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
@@ -176,10 +177,13 @@ if module == "getAllData":
         if res.status_code == 200:
             res = res.json()
             if res['success']:
-                tmp = [{'name':a['name'],'value':a['value']} for a in res['data']]
-                SetVar(var_,tmp)
-                for b in tmp:
-                    SetVar(b['name'],b['value'])
+                if extra_data is None:
+                    tmp = [{'name':a['name'],'value':a['value']} for a in res['data']]
+                    SetVar(var_,tmp)
+                    for b in tmp:
+                        SetVar(b['name'],b['value'])
+                else:
+                    SetVar(var_, res['data'])
             else:
                 raise Exception(res['message'])
         else:
@@ -189,4 +193,38 @@ if module == "getAllData":
         PrintException()
         raise (e)
 
+if module == "addAsset":
+    name = GetParams("name_")
+    type_ = GetParams("type_")
+    value = GetParams("value_")
+    result = GetParams('result_')
+    process_id = GetParams("process_id_")
+    instance_id = GetParams("instance_id_")
+    users_ = GetParams("users_")
 
+    if type_ is None:
+        type_ = "text"
+    
+    if users_ is None:
+        user_list = []
+    else:
+        user_list = [int(i) for i in users_.strip("[]").split(", ")]
+
+    try:
+        data = {'name': name, 'type': type_, 'value': value, 'process_id': process_id, 'users': user_list, 'instance_id': instance_id}
+        print(data)
+
+        headers = {'Authorization': 'Bearer {token}'.format(token=token)}
+        res = requests.post(f'{server_}' + '/api/assets/add', json=data,
+                            headers=headers)
+        
+        if res.status_code == 200:
+            res = res.json()
+            SetVar(result, res)
+            
+        else:
+            raise Exception(res.json()['message'])
+        
+    except Exception as e:
+        PrintException()
+        raise(e)
