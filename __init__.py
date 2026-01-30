@@ -205,17 +205,64 @@ if module == "addAsset":
     if type_ is None:
         type_ = "text"
     
-    if users_ is None:
+    if process_id is None:
+        process_id = 0
+    
+    if instance_id is None:
+        instance_id = 0
+    
+    if users_ is None or "[]":
         user_list = []
     else:
         user_list = [int(i) for i in users_.strip("[]").split(", ")]
 
     try:
         data = {'name': name, 'type': type_, 'value': value, 'process_id': process_id, 'users': user_list, 'instance_id': instance_id}
-        print(data)
 
         headers = {'Authorization': 'Bearer {token}'.format(token=token)}
         res = requests.post(f'{server_}' + '/api/assets/add', json=data,
+                            headers=headers)
+        
+        if res.status_code == 200:
+            res = res.json()
+            SetVar(result, res)
+            
+        else:
+            raise Exception(res.json()['message'])
+        
+    except Exception as e:
+        PrintException()
+        raise(e)
+    
+if module == "editData":
+    name = GetParams("name_")
+    type_ = GetParams("type_")
+    value = GetParams("value_")
+    result = GetParams('result_')
+    process_id = GetParams("process_id_")
+    instance_id = GetParams("instance_id_")
+    users_ = GetParams("users_")
+    asset_id = GetParams("Asset_id")
+
+    if type_ is None:
+        type_ = "text"
+    
+    if process_id is None:
+        process_id = 0
+    
+    if instance_id is None:
+        instance_id = 0
+
+    if users_ is None or "[]":
+        user_list = []
+    else:
+        user_list = [int(i) for i in users_.strip("[]").split(", ")]
+
+    try:
+        data = {'name': name, 'type': type_, 'value': value, 'process_id': process_id, 'users': user_list, 'instance_id': instance_id, 'id': asset_id}
+
+        headers = {'Authorization': 'Bearer {token}'.format(token=token)}
+        res = requests.post(f'{server_}' + '/api/assets/edit', json=data,
                             headers=headers)
         
         if res.status_code == 200:
