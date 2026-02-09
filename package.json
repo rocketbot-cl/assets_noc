@@ -7,7 +7,7 @@
     "pr": "Módulo para recuperação de assets do Rocketbot NOC."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "homepage": "http://rockertbot.cl",
   "linux": true,
@@ -196,7 +196,7 @@
             "description": {
               "es": "Token del proceso",
               "en": "Process token",
-              "pr": "Deixe em branco se for um ativo global"
+              "pr": "Token do processo"
             },
             "id": "process_",
             "css": "col-md-6"
@@ -214,12 +214,32 @@
               "pr": "Key de Instância"
             },
             "description": {
-              "es": "ID de instancia del proceso",
-              "en": "Instance ID of the process",
-              "pr": "ID de instância do processo"
+              "es": "Key de instancia del proceso",
+              "en": "Instance key of the process",
+              "pr": "Key de instância do processo"
             },
             "id": "instance_",
             "css": "col-md-12"
+          },
+          {
+              "type": "checkbox",
+              "placeholder": {
+                  "es": "True",
+                  "en": "True",
+                  "pr": "True"
+              },
+              "title": {
+                  "es": "Obtener datos adicionales:",
+                  "en": "Obtain extra data:",
+                  "pr": "Obter dados extras:"
+              },
+              "description": {
+                  "es": "Marca para obtener datos extra de los Assets",
+                  "en": "Check to obtain extra data from the Assets",
+                  "pr": "Marque para obter dados extras dos Assets"
+              },
+              "id": "extra_data_",
+              "css": "col-md-6"
           },
           {
             "type": "input",
@@ -245,7 +265,7 @@
             },
             "remove_vars": true,
             "id": "var_",
-            "css": "col-md-12"
+            "css": "col-md-6"
           }
         ]
       },
@@ -387,70 +407,70 @@
           },
           {
             "type": "input",
-            "placeholder": {
-              "es": "IdProceso",
-              "en": "ProcessId",
-              "pr": "IdProcesso"
+             "placeholder": {
+              "es": "27FEXKIXFRFDUNVD",
+              "en": "27FEXKIXFRFDUNVD",
+              "pr": "27FEXKIXFRFDUNVD"
             },
             "title": {
-              "es": "Id del proceso:",
-              "en": "Process id:",
-              "pr": "Id do processo"
+              "es": "Token del proceso:",
+              "en": "Process token:",
+              "pr": "Token do processo"
             },
             "description": {
-              "es": "Id del proceso al que se le agregara el Asset",
-              "en": "Process id to which the Asset will be added",
-              "pr": "Id do processo ao qual o Asset será adicionado"
+              "es": "Token del proceso al que se le modificara el Asset",
+              "en": "Process Token to which the Asset will be modified",
+              "pr": "Token do processo ao qual o Asset será modificado"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset global",
               "en": "Leave blank if it is global Asset",
               "pr": "Deixe em branco se for um ativo global"
             },
-            "id": "process_id_",
+            "id": "process_token_",
             "css": "col-md-6"
           },
           {
             "type": "input",
             "placeholder": {
-              "es": "IdProceso",
-              "en": "ProcessId",
-              "pr": "IdProcesso"
+              "es": "6241c3a1dd96f8f92f",
+              "en": "6241c3a1dd96f8f92f",
+              "pr": "6241c3a1dd96f8f92f"
             },
             "title": {
-              "es": "Id de la instancia:",
-              "en": "Instance id:",
-              "pr": "Id doa instância"
+              "es": "Key de Instancia:",
+              "en": "Instance Key:",
+              "pr": "Key de Instância"
             },
             "description": {
-              "es": "Id de la instancia al que se le agregara el Asset",
-              "en": "Instance id to which the Asset will be added",
-              "pr": "Id da instância ao qual o Asset será adicionado"
+              "es": "Key de la instancia al que se le agregara el Asset",
+              "en": "Instance Key to which the Asset will be added",
+              "pr": "Key da instância ao qual o Asset será adicionado"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset para todas las instancias",
               "en": "Leave blank if it is an Asset for all instances",
               "pr": "Deixe em branco se for um ativo para todas as instâncias"
             },
-            "id": "instance_id_",
+            "id": "instance_key_",
             "css": "col-md-6"
           },
           {
             "type": "input",
             "placeholder": {
-              "es": "[IdUsuario1, IdUsuario2, ...]",
-              "en": "[UserId1, UserId2, ...]",
-              "pr": "[IdUsuario1, IdUsuario2, ...]"
+              "es": "[usuario1@mail.com, usuario2@mail.com, ...]",
+              "en": "[UserMail1, UserMail2, ...]",
+              "pr": "[MailUsuario1, MailUsuario2, ...]"
             },
             "title": {
-              "es": "Id de usuarios:",
-              "en": "User ids:",
-              "pr": "Id dos usuários"
+              "es": "Mail de usuarios:",
+              "en": "User mails:",
+              "pr": "Mails dos usuários"
             },
             "description": {
-              "es": "Lista de id de usuarios a los que se le agregara el Asset",
-              "en": "List of user ids to which the Asset will be added",
-              "pr": "Lista de ids dos usuários aos quais o Asset será adicionado"
+              "es": "Lista de mails de usuarios a los que se le agregara el Asset",
+              "en": "List of user mails to which the Asset will be added",
+              "pr": "Lista de mails dos usuários aos quais o Asset será adicionado"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset de todos los usuarios",
@@ -609,79 +629,79 @@
               "pr": "Nome do Asset"
             },
             "description": {
-              "es": "Nombre del Asset a modificar",
-              "en": "Name of the Asset to modify",
-              "pr": "Nome do Asset a ser modificado"
+              "es": "Nuevo nombre del Asset",
+              "en": "New name of the Asset",
+              "pr": "Novo nome do Asset"
             },
             "id": "name_",
             "css": "col-md-6"
           },
           {
             "type": "input",
-            "placeholder": {
-              "es": "IdProceso",
-              "en": "ProcessId",
-              "pr": "IdProcesso"
+             "placeholder": {
+              "es": "27FEXKIXFRFDUNVD",
+              "en": "27FEXKIXFRFDUNVD",
+              "pr": "27FEXKIXFRFDUNVD"
             },
             "title": {
-              "es": "Id del proceso:",
-              "en": "Process id:",
-              "pr": "Id do processo"
+              "es": "Token del proceso:",
+              "en": "Process token:",
+              "pr": "Token do processo"
             },
             "description": {
-              "es": "Id del proceso al que se le modificara el Asset",
-              "en": "Process id to which the Asset will be modified",
-              "pr": "Id do processo ao qual o Asset será modificado"
+              "es": "Token del proceso al que se le modificara el Asset",
+              "en": "Process Token to which the Asset will be modified",
+              "pr": "Token do processo ao qual o Asset será modificado"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset global",
               "en": "Leave blank if it is global Asset",
               "pr": "Deixe em branco se for um ativo global"
             },
-            "id": "process_id_",
+            "id": "process_token_",
             "css": "col-md-6"
           },
           {
             "type": "input",
             "placeholder": {
-              "es": "IdInstancia",
-              "en": "InstanceId",
-              "pr": "IdInstância"
+              "es": "6241c3a1dd96f8f92f",
+              "en": "6241c3a1dd96f8f92f",
+              "pr": "6241c3a1dd96f8f92f"
             },
             "title": {
-              "es": "Id de la instancia:",
-              "en": "Instance id:",
-              "pr": "Id doa instância"
+              "es": "Key de la instancia:",
+              "en": "Instance Key:",
+              "pr": "Key da instância"
             },
             "description": {
-              "es": "Id de la instancia a la que se le modificara el Asset",
-              "en": "Instance id to which the Asset will be modified",
-              "pr": "Id da instância ao qual o Asset será modificado"
+              "es": "Key de la instancia a la que se le modificara el Asset",
+              "en": "Instance Key to which the Asset will be modified",
+              "pr": "Key da instância ao qual o Asset será modificado"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset para todas las instancias",
               "en": "Leave blank if it is an Asset for all instances",
               "pr": "Deixe em branco se for um ativo para todas as instâncias"
             },
-            "id": "instance_id_",
+            "id": "instance_key_",
             "css": "col-md-6"
           },
           {
             "type": "input",
             "placeholder": {
-              "es": "[IdUsuario1, IdUsuario2, ...]",
-              "en": "[UserId1, UserId2, ...]",
-              "pr": "[IdUsuario1, IdUsuario2, ...]"
+              "es": "[MailUsuario1, MailUsuario2, ...]",
+              "en": "[UserMail1, UserMail2, ...]",
+              "pr": "[MailUsuario1, MailUsuario2, ...]"
             },
             "title": {
-              "es": "Id de usuarios:",
-              "en": "User ids:",
-              "pr": "Id dos usuários"
+              "es": "Mails de usuarios:",
+              "en": "User Mails:",
+              "pr": "Mails dos usuários"
             },
             "description": {
-              "es": "Lista de id de usuarios que tendran el Asset",
-              "en": "List of user ids who will have the Asset",
-              "pr": "Lista de ids dos usuários que terão o Asset"
+              "es": "Lista de Mails de usuarios que tendran el Asset",
+              "en": "List of user Mails who will have the Asset",
+              "pr": "Lista de Mails dos usuários que terão o Asset"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset de todos los usuarios",

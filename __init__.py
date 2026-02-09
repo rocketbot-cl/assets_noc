@@ -44,8 +44,88 @@ from orchestator import OrchestatorCommon
 global orchestator_service
 global path_ini_assetnoc_
 global instance_key_ini
+instance_key_ini = None
 
 module = GetParams("module")
+
+def get_process_and_instance_id_from_token_and_key(process_token, instance_key):
+    if process_token is None:
+        if instance_key:
+            raise Exception("Cannot specify an instance for an Asset without a specified process")
+        return 0, 0
+
+    headers = {'Authorization': 'Bearer {token}'.format(token=token)}
+    res = requests.post(f'{server_}' + f'/api/process/{process_token}', headers=headers)
+
+    if res.status_code == 200:
+        res = res.json()
+        data = res['data']
+        process_id = data['id']
+
+        if instance_key is None:
+            return process_id, 0
+        else:
+            for instance in data['instances']:
+                if instance_key == instance['key']:
+                    return process_id, instance['id']
+            
+            raise Exception("The instance hasn't been added to the process")
+
+    else:
+        raise Exception(res.json()['message'])
+
+def get_user_ids_from_mails(user_mails):
+    if user_mails is None or user_mails == "[]":
+        return []
+    
+    headers = {'Authorization': 'Bearer {token}'.format(token=token)}
+    res = requests.post(f'{server_}' + '/api/users/list', headers=headers)
+
+    if res.status_code == 200:
+        res = res.json()
+        mails = [i for i in user_mails.strip("[]").split(", ")]
+        user_ids = []
+        
+        for user_mail in mails:
+            user_not_found = True
+
+            for user in res['data']:
+                if user_mail == user['email']:
+                    user_ids.append(user['id'])
+                    user_not_found = False
+
+            if user_not_found:
+                raise Exception(f"{user_mail} has not been added as a user")
+        return user_ids
+    else:
+        raise Exception(res.json()['message'])
+
+def get_process_token_and_instance_key_from_ids(process_id, instance_id):
+    if process_id == 0:
+        if instance_id != 0:
+            raise Exception("Cannot specify instance ID if asset is global")
+        return None, None
+    
+    headers = {'Authorization': 'Bearer {token}'.format(token=token)}
+    res = requests.post(f'{server_}' + '/api/process/list', headers=headers)
+    if res.status_code == 200:
+        data = res.json()["data"]
+
+        for process in data:
+            if process['id'] == process_id:
+                process_token = process['token']
+                if instance_id == 0:
+                    return process_token, None
+                
+                for instance in process['instances']:
+                    if instance['id'] == instance_id:
+                        return process_token, instance['key']
+                raise Exception("The instance hasn't been added to the process")
+            
+        raise Exception("Invalid process ID")
+    
+    else:
+        raise Exception(res.json()['message'])
 
 if module == "loginNOC":
     
@@ -135,25 +215,43 @@ if module == "loginNOC":
 if module == "getData":
     name_ = GetParams("name_")
     var_ = GetParams("var_")
-    process_ = GetParams("process_")
-    instance_ = GetParams("instance_")
-    if not instance_:
+    process_token = GetParams("process_")
+    instance_key = GetParams("instance_")
+    extra_data = GetParams("extra_data_")
+
+    if not instance_key and instance_key_ini is not None:
         instance_ = instance_key_ini
+
     try:
-        data = {'name': name_, 'instance': instance_}
-        if process_:
-            data['process'] = process_
+        data = {'name': name_, 'instance': instance_key}
+        if process_token:
+            data['process'] = process_token
         headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
         res = requests.post(server_ + '/api/assets/get', data,
                             headers=headers)
         if res.status_code == 200:
             res = res.json()
             if res['success']:
+                if extra_data is None:
+                    if 'data' in res:
+                        tmp = res['data']['value']
+                        if var_:
+                            SetVar(var_,tmp)
+                else:
+                    asset = res['data']
+                    data = {}
+                    data['name'] = asset['name']
+                    data['id'] = asset['id']
+                    data['type'] = asset['type']
+                    data['value'] = asset['value']
+                    process_id = asset['process_id']
+                    instance_id = asset['instance_id']
                 
-                if 'data' in res:
-                    tmp = res['data']['value']
-                    if var_:
-                        SetVar(var_,tmp)
+                    data['process_token'], data['instance_key'] = get_process_token_and_instance_key_from_ids(process_id, instance_id)
+
+                    data['users'] = [user['email'] for user in asset.get('users', [])]
+
+                    SetVar(var_, data)                    
             else:
                 raise Exception(res['message'])
         else:
@@ -164,8 +262,6 @@ if module == "getData":
         raise (e)
 
 if module == "getAllData":
-
-    # name_ = GetParams("name_")
     var_ = GetParams("var_")
     extra_data = GetParams("extra_data_")
 
@@ -183,7 +279,28 @@ if module == "getAllData":
                     for b in tmp:
                         SetVar(b['name'],b['value'])
                 else:
-                    SetVar(var_, res['data'])
+                    received_data = res['data']
+                    data_list = []
+                    i = 1
+                    for asset in received_data:
+
+                        data = {}
+                        data['name'] = asset['name']
+                        data['id'] = asset['id']
+                        data['type'] = asset['type']
+                        data['value'] = asset['value']
+
+                        process = asset['process']
+                        data['process_token'] = process['token'] if process is not None else None
+
+                        instance = asset['instance']
+                        data['instance_key'] = instance['key'] if instance is not None else None
+
+                        data['users'] = [user['email'] for user in asset.get('users', [])]
+
+                        data_list.append(data)
+
+                    SetVar(var_, data_list)
             else:
                 raise Exception(res['message'])
         else:
@@ -198,25 +315,17 @@ if module == "addAsset":
     type_ = GetParams("type_")
     value = GetParams("value_")
     result = GetParams('result_')
-    process_id = GetParams("process_id_")
-    instance_id = GetParams("instance_id_")
-    users_ = GetParams("users_")
+    process_token = GetParams("process_token_")
+    instance_key = GetParams("instance_key_")
+    users_mails = GetParams("users_")
 
     if type_ is None:
         type_ = "text"
     
-    if process_id is None:
-        process_id = 0
-    
-    if instance_id is None:
-        instance_id = 0
-    
-    if users_ is None or "[]":
-        user_list = []
-    else:
-        user_list = [int(i) for i in users_.strip("[]").split(", ")]
-
     try:
+        user_list = get_user_ids_from_mails(users_mails)
+        process_id, instance_id = get_process_and_instance_id_from_token_and_key(process_token, instance_key)
+
         data = {'name': name, 'type': type_, 'value': value, 'process_id': process_id, 'users': user_list, 'instance_id': instance_id}
 
         headers = {'Authorization': 'Bearer {token}'.format(token=token)}
@@ -239,26 +348,19 @@ if module == "editData":
     type_ = GetParams("type_")
     value = GetParams("value_")
     result = GetParams('result_')
-    process_id = GetParams("process_id_")
-    instance_id = GetParams("instance_id_")
-    users_ = GetParams("users_")
+    process_token = GetParams("process_token_")
+    instance_key = GetParams("instance_key_")
+    users_mails = GetParams("users_")
     asset_id = GetParams("Asset_id")
 
     if type_ is None:
         type_ = "text"
-    
-    if process_id is None:
-        process_id = 0
-    
-    if instance_id is None:
-        instance_id = 0
 
-    if users_ is None or "[]":
-        user_list = []
-    else:
-        user_list = [int(i) for i in users_.strip("[]").split(", ")]
 
     try:
+        process_id, instance_id = get_process_and_instance_id_from_token_and_key(process_token, instance_key)
+        user_list = get_user_ids_from_mails(users_mails)
+
         data = {'name': name, 'type': type_, 'value': value, 'process_id': process_id, 'users': user_list, 'instance_id': instance_id, 'id': asset_id}
 
         headers = {'Authorization': 'Bearer {token}'.format(token=token)}
@@ -275,3 +377,4 @@ if module == "editData":
     except Exception as e:
         PrintException()
         raise(e)
+    

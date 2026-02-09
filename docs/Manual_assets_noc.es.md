@@ -43,7 +43,8 @@ Obtiene el asset especifico que se le indique
 | --- | --- | --- |
 |Nombre de Asset|Nombre del asset a obtener|Test|
 |Token del proceso|Token del proceso|27FEXKIXFRFDUNVD|
-|Key de Instancia|ID de instancia del proceso|6241c3a1dd96f8f92f|
+|Key de Instancia|Key de instancia del proceso|6241c3a1dd96f8f92f|
+|Obtener datos adicionales|Marca para obtener datos extra de los Assets|True|
 |Asignar resultado a Variable|Variable donde se guardara el resultado. Nombre de variable sin llaves {}|Variable|
 
 ### Obtener Todos los Assets
@@ -60,9 +61,9 @@ Agrega un Asset a tu Orquestador
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Nombre de Asset|Nombre del Asset a agregar|NuevoAsset|
-|Id del proceso|Id del proceso al que se le agregara el Asset|IdProceso|
-|Id de la instancia|Id de la instancia al que se le agregara el Asset|IdProceso|
-|Id de usuarios|Lista de id de usuarios a los que se le agregara el Asset|[IdUsuario1, IdUsuario2, ...]|
+|Token del proceso|Token del proceso al que se le modificara el Asset|27FEXKIXFRFDUNVD|
+|Key de Instancia|Key de la instancia al que se le agregara el Asset|6241c3a1dd96f8f92f|
+|Mail de usuarios|Lista de mails de usuarios a los que se le agregara el Asset|[usuario1@mail.com, usuario2@mail.com, ...]|
 |Tipo del Asset|Tipo del Asset a agregar|General|
 |Valor del Asset|Valor del Asset a agregar|Un valor|
 |Asignar resultado a Variable|Variable donde se guardara el resultado. Nombre de variable sin llaves {}|Variable|
@@ -73,10 +74,10 @@ Modifica el asset especifico que se le indique
 |Parámetros|Descripción|ejemplo|
 | --- | --- | --- |
 |Id del Asset|Id del Asset a modificar|Id_Asset|
-|Nombre de Asset|Nombre del Asset a modificar|NuevoAsset|
-|Id del proceso|Id del proceso al que se le modificara el Asset|IdProceso|
-|Id de la instancia|Id de la instancia a la que se le modificara el Asset|IdInstancia|
-|Id de usuarios|Lista de id de usuarios que tendran el Asset|[IdUsuario1, IdUsuario2, ...]|
+|Nombre de Asset|Nuevo nombre del Asset|NuevoAsset|
+|Token del proceso|Token del proceso al que se le modificara el Asset|27FEXKIXFRFDUNVD|
+|Key de la instancia|Key de la instancia a la que se le modificara el Asset|6241c3a1dd96f8f92f|
+|Mails de usuarios|Lista de Mails de usuarios que tendran el Asset|[MailUsuario1, MailUsuario2, ...]|
 |Tipo del Asset|Tipo del Asset a modificar|General|
 |Valor del Asset|Valor del Asset a modificar|Un valor|
 |Asignar resultado a Variable|Variable donde se guardara el resultado. Nombre de variable sin llaves {}|Variable|

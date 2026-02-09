@@ -39,7 +39,8 @@ Obtains the specific asset that is indicated
 | --- | --- | --- |
 |Asset Name|Name of the asset to get|Test|
 |Process token|Process token|27FEXKIXFRFDUNVD|
-|Instance Key|Instance ID of the process|6241c3a1dd96f8f92f|
+|Instance Key|Instance key of the process|6241c3a1dd96f8f92f|
+|Obtain extra data|Check to obtain extra data from the Assets|True|
 |Assign result to Variable|Variable where the result will be saved. Name of variable without {}|Variable|
 
 ### Get All Assets
@@ -56,9 +57,9 @@ Add an Asset to your Orchestrator
 |Parameters|Description|example|
 | --- | --- | --- |
 |Asset Name|Name of the Asset to add|NewAsset|
-|Process id|Process id to which the Asset will be added|ProcessId|
-|Instance id|Instance id to which the Asset will be added|ProcessId|
-|User ids|List of user ids to which the Asset will be added|[UserId1, UserId2, ...]|
+|Process token|Process Token to which the Asset will be modified|27FEXKIXFRFDUNVD|
+|Instance Key|Instance Key to which the Asset will be added|6241c3a1dd96f8f92f|
+|User mails|List of user mails to which the Asset will be added|[UserMail1, UserMail2, ...]|
 |Asset type|Type of the Asset to add|General|
 |Asset Value|Value of the Asset to add|A value|
 |Assign result to Variable|Variable where the result will be saved. Name of variable without {}|Variable|
@@ -69,10 +70,10 @@ Modifies the specific asset that is indicated
 |Parameters|Description|example|
 | --- | --- | --- |
 |Asset Id|Id of the Asset to modify|Id_Asset|
-|Asset Name|Name of the Asset to modify|NewAsset|
-|Process id|Process id to which the Asset will be modified|ProcessId|
-|Instance id|Instance id to which the Asset will be modified|InstanceId|
-|User ids|List of user ids who will have the Asset|[UserId1, UserId2, ...]|
+|Asset Name|New name of the Asset|NewAsset|
+|Process token|Process Token to which the Asset will be modified|27FEXKIXFRFDUNVD|
+|Instance Key|Instance Key to which the Asset will be modified|6241c3a1dd96f8f92f|
+|User Mails|List of user Mails who will have the Asset|[UserMail1, UserMail2, ...]|
 |Asset type|Type of the Asset to modify|General|
 |Asset Value|Value of the Asset to modify|A value|
 |Assign result to Variable|Variable where the result will be saved. Name of variable without {}|Variable|
