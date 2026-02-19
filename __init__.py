@@ -223,9 +223,10 @@ if module == "getData":
         instance_ = instance_key_ini
 
     try:
-        data = {'name': name_, 'instance': instance_key}
+        data = {'name': name_, 'instance': instance_key,}
         if process_token:
             data['process'] = process_token
+        
         headers = {'content-type': 'application/x-www-form-urlencoded','Authorization': 'Bearer {token}'.format(token=token)}
         res = requests.post(server_ + '/api/assets/get', data,
                             headers=headers)
@@ -244,8 +245,8 @@ if module == "getData":
                     data['id'] = asset['id']
                     data['type'] = asset['type']
                     data['value'] = asset['value']
-                    process_id = asset['process_id']
-                    instance_id = asset['instance_id']
+                    process_id = asset.get('process_id', 0)
+                    instance_id = asset.get('instance_id', 0)
                 
                     data['process_token'], data['instance_key'] = get_process_token_and_instance_key_from_ids(process_id, instance_id)
 

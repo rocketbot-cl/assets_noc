@@ -194,9 +194,9 @@
               "pr": "Deixe em branco se for um ativo global"
             },
             "description": {
-              "es": "Token del proceso",
-              "en": "Process token",
-              "pr": "Token do processo"
+              "es": "Token del proceso. Si se especifica, hay que tambien especificar la key de instancia.",
+              "en": "Process token. If specified, you also need to specify the instance key.",
+              "pr": "Token do processo. Se especificado, você também precisa especificar a chave da instância."
             },
             "id": "process_",
             "css": "col-md-6"
@@ -418,9 +418,9 @@
               "pr": "Token do processo"
             },
             "description": {
-              "es": "Token del proceso al que se le modificara el Asset",
-              "en": "Process Token to which the Asset will be modified",
-              "pr": "Token do processo ao qual o Asset será modificado"
+              "es": "Token del proceso al que se le agregara el Asset",
+              "en": "Process Token to which the Asset will be added",
+              "pr": "Token do processo ao qual o Asset será adicionado"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset global",
@@ -614,7 +614,8 @@
               "pr": "Id do Asset a ser modificado"
             },
             "id": "Asset_id",
-            "css": "col-md-6"
+            "css": "col-md-6",
+            "required": true
           },
           {
             "type": "input",
@@ -624,17 +625,18 @@
               "pr": "NovoAsset"
             },
             "title": {
-              "es": "Nombre de Asset:",
-              "en": "Asset Name:",
-              "pr": "Nome do Asset"
-            },
-            "description": {
-              "es": "Nuevo nombre del Asset",
-              "en": "New name of the Asset",
+              "es": "Nuevo nombre de Asset:",
+              "en": "New Asset Name:",
               "pr": "Novo nome do Asset"
             },
+            "description": {
+              "es": "Nuevo nombre del Asset modificado. Si existe otro Asset con el mismo nombre, no se podra modificar el asset sin cambiar tambien el nombre",
+              "en": "New name of the modified Asset. If there is another Asset with the same name, the asset cannot be modified without also changing the name",
+              "pr": "Novo nome do Asset modificado. Se houver outro Asset com o mesmo nome, o asset não pode ser modificado sem também alterar o nome"
+            },
             "id": "name_",
-            "css": "col-md-6"
+            "css": "col-md-6",
+            "required": true
           },
           {
             "type": "input",
@@ -644,14 +646,14 @@
               "pr": "27FEXKIXFRFDUNVD"
             },
             "title": {
-              "es": "Token del proceso:",
-              "en": "Process token:",
-              "pr": "Token do processo"
+              "es": "Nuevo token del proceso:",
+              "en": "New process token:",
+              "pr": "Novo token do processo"
             },
             "description": {
-              "es": "Token del proceso al que se le modificara el Asset",
-              "en": "Process Token to which the Asset will be modified",
-              "pr": "Token do processo ao qual o Asset será modificado"
+              "es": "Token del proceso que tendrá el Asset",
+              "en": "Token of the process that the Asset will have",
+              "pr": "Token do processo que o Asset terá"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset global",
@@ -669,14 +671,14 @@
               "pr": "6241c3a1dd96f8f92f"
             },
             "title": {
-              "es": "Key de la instancia:",
-              "en": "Instance Key:",
-              "pr": "Key da instância"
+              "es": "Nueva key de la instancia:",
+              "en": "New instance Key:",
+              "pr": "Nova key da instância"
             },
             "description": {
-              "es": "Key de la instancia a la que se le modificara el Asset",
-              "en": "Instance Key to which the Asset will be modified",
-              "pr": "Key da instância ao qual o Asset será modificado"
+              "es": "Key de la instancia que tendrá el Asset",
+              "en": "Instance Key that the Asset will have",
+              "pr": "Key da instância que o Asset terá"
             },
             "help": {
               "es": "Dejar en blanco si es un Asset para todas las instancias",
@@ -694,12 +696,12 @@
               "pr": "[MailUsuario1, MailUsuario2, ...]"
             },
             "title": {
-              "es": "Mails de usuarios:",
-              "en": "User Mails:",
-              "pr": "Mails dos usuários"
+              "es": "Nuevos mails de usuarios:",
+              "en": "New User Mails:",
+              "pr": "Novos mails dos usuários"
             },
             "description": {
-              "es": "Lista de Mails de usuarios que tendran el Asset",
+              "es": "Lista de Mails de usuarios que tendrán el Asset",
               "en": "List of user Mails who will have the Asset",
               "pr": "Lista de Mails dos usuários que terão o Asset"
             },
@@ -733,14 +735,14 @@
               }
             ],
             "title": {
-              "es": "Tipo del Asset:",
-              "en": "Asset type:",
-              "pr": "Tipo do Asset"
+              "es": "Nuevo tipo del Asset:",
+              "en": "New Asset type:",
+              "pr": "Novo tipo do Asset"
             },
             "description": {
-              "es": "Tipo del Asset a modificar",
-              "en": "Type of the Asset to modify",
-              "pr": "Tipo do Asset a ser modificado"
+              "es": "Nuevo tipo del Asset a modificar",
+              "en": "New type of the Asset to modify",
+              "pr": "Novo tipo do Asset a ser modificado"
             },
             "id": "type_",
             "css": "col-md-6"
@@ -753,14 +755,14 @@
               "pr": "Um valor"
             },
             "title": {
-              "es": "Valor del Asset:",
-              "en": "Asset Value:",
-              "pr": "Valor do Asset"
+              "es": "Nuevo valor del Asset:",
+              "en": "New Asset Value:",
+              "pr": "Novo valor do Asset"
             },
             "description": {
-              "es": "Valor del Asset a modificar",
-              "en": "Value of the Asset to modify",
-              "pr": "Valor do Asset a ser modificado"
+              "es": "Nuevo valor del Asset a modificar",
+              "en": "New value of the Asset to modify",
+              "pr": "Novo valor do Asset a ser modificado"
             },
             "id": "value_",
             "css": "col-md-6"
