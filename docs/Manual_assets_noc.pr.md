@@ -34,7 +34,7 @@ Obtém o ativo específico indicado
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Nome do Asset|Nome do asset a ser obtido|Teste|
-|Token do processo|Token do processo|27FEXKIXFRFDUNVD|
+|Token do processo|Token do processo. Se especificado, você também precisa especificar a chave da instância.|27FEXKIXFRFDUNVD|
 |Key de Instância|Key de instância do processo|6241c3a1dd96f8f92f|
 |Obter dados extras|Marque para obter dados extras dos Assets|True|
 |Atribuir resultado a variável|Variável onde o resultado será salvo. Nome da variável sem chaves|Variável|
@@ -53,7 +53,7 @@ Adiciona um Asset ao seu Orquestrador
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Nome do Asset|Nome do Asset a ser adicionado|NovoAsset|
-|Token do processo|Token do processo ao qual o Asset será modificado|27FEXKIXFRFDUNVD|
+|Token do processo|Token do processo ao qual o Asset será adicionado|27FEXKIXFRFDUNVD|
 |Key de Instância|Key da instância ao qual o Asset será adicionado|6241c3a1dd96f8f92f|
 |Mails dos usuários|Lista de mails dos usuários aos quais o Asset será adicionado|[MailUsuario1, MailUsuario2, ...]|
 |Tipo do Asset|Tipo do Asset a ser adicionado|Geral|
@@ -66,10 +66,10 @@ Modifica o ativo específico indicado
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Id do Asset|Id do Asset a ser modificado|Id_Asset|
-|Nome do Asset|Novo nome do Asset|NovoAsset|
-|Token do processo|Token do processo ao qual o Asset será modificado|27FEXKIXFRFDUNVD|
-|Key da instância|Key da instância ao qual o Asset será modificado|6241c3a1dd96f8f92f|
-|Mails dos usuários|Lista de Mails dos usuários que terão o Asset|[MailUsuario1, MailUsuario2, ...]|
-|Tipo do Asset|Tipo do Asset a ser modificado|Geral|
-|Valor do Asset|Valor do Asset a ser modificado|Um valor|
+|Novo nome do Asset|Novo nome do Asset modificado. Se houver outro Asset com o mesmo nome, o asset não pode ser modificado sem também alterar o nome|NovoAsset|
+|Novo token do processo|Token do processo que o Asset terá|27FEXKIXFRFDUNVD|
+|Nova key da instância|Key da instância que o Asset terá|6241c3a1dd96f8f92f|
+|Novos mails dos usuários|Lista de Mails dos usuários que terão o Asset|[MailUsuario1, MailUsuario2, ...]|
+|Novo tipo do Asset|Novo tipo do Asset a ser modificado|Geral|
+|Novo valor do Asset|Novo valor do Asset a ser modificado|Um valor|
 |Atribuir resultado a variável|Variável onde o resultado será salvo. Nome da variável sem chaves|Variável|
