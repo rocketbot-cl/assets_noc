@@ -136,7 +136,7 @@
     },
     {
       "en": {
-        "title": "Get an Specific Asset",
+        "title": "Get a Specific Asset",
         "description": "Obtains the specific asset that is indicated",
         "title_options": "Select Option",
         "options": null
