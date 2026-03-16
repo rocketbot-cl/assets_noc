@@ -44,7 +44,6 @@ from orchestator import OrchestatorCommon
 global orchestator_service
 global path_ini_assetnoc_
 global instance_key_ini
-instance_key_ini = None
 
 module = GetParams("module")
 
@@ -127,6 +126,18 @@ def get_process_token_and_instance_key_from_ids(process_id, instance_id):
     else:
         raise Exception(res.json()['message'])
 
+#instance_key_ini may not be defined
+#Instance_key will become instance_key_ini if the user is not looking for global assets and did not specified the instance key
+def select_instance_key(instance_key, is_looking_for_global_assets):
+        try: 
+            if instance_key_ini and not (instance_key and is_looking_for_global_assets):
+                return instance_key_ini
+            else:
+                return instance_key
+        except:
+            return instance_key
+        
+
 if module == "loginNOC":
     
     conx =""
@@ -182,7 +193,8 @@ if module == "loginNOC":
                 config = configparser.ConfigParser()
                 if not config.read(path):
                     raise FileNotFoundError(f"No se pudo encontrar o leer el archivo .ini en la ruta: {path}")
-                
+
+
                 instance_key_ini = config['USER']['key']
                 orchestrator_service = OrchestatorCommon(server=server_, user=username, password=password, ini_path=path, apikey=apikey)
                 if server_ is None:
@@ -218,9 +230,10 @@ if module == "getData":
     process_token = GetParams("process_")
     instance_key = GetParams("instance_")
     extra_data = GetParams("extra_data_")
+    is_global_assets = GetParams("global_assets_")
 
-    if not instance_key and instance_key_ini is not None:
-        instance_ = instance_key_ini
+
+    instance_key = select_instance_key(instance_key=instance_key, is_looking_for_global_assets=is_global_assets)
 
     try:
         data = {'name': name_, 'instance': instance_key,}

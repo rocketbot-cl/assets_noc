@@ -37,6 +37,7 @@ Obtém o ativo específico indicado
 |Token do processo|Token do processo. Se especificado, você também precisa especificar a chave da instância.|27FEXKIXFRFDUNVD|
 |Key de Instância|Key de instância do processo|6241c3a1dd96f8f92f|
 |Obter dados extras|Marque para obter dados extras dos Assets|True|
+|Obter assets globais|Marque para obter assets globais, sem instância. Só necessário se o login for feito via arquivo.ini|True|
 |Atribuir resultado a variável|Variável onde o resultado será salvo. Nome da variável sem chaves|Variável|
 
 ### Obter todos os Assets

@@ -32,7 +32,7 @@ Login NOC using credentials such as e-mail and password, API Key and noc.ini fil
 |Ignore SSL|Check if you want to ignore SSL certificate verification||
 |Assign result to a Variable|Variable where the state of the connection will be stored, returns True if it is successful or False otherwise|Variable|
 
-### Get an Specific Asset
+### Get a Specific Asset
 
 Obtains the specific asset that is indicated
 |Parameters|Description|example|
@@ -41,6 +41,7 @@ Obtains the specific asset that is indicated
 |Process token|Process token. If specified, you also need to specify the instance key.|27FEXKIXFRFDUNVD|
 |Instance Key|Instance key of the process|6241c3a1dd96f8f92f|
 |Obtain extra data|Check to obtain extra data from the Assets|True|
+|Obtain global assets|Check to obtain global assets without instance. Only necessary if login is done via file.ini|True|
 |Assign result to Variable|Variable where the result will be saved. Name of variable without {}|Variable|
 
 ### Get All Assets

@@ -7,7 +7,7 @@
     "pr": "Módulo para recuperação de assets do Rocketbot NOC."
   },
   "disclaimer": "THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.",
-  "version": "1.1.1",
+  "version": "1.1.13",
   "license": "MIT",
   "homepage": "http://rockertbot.cl",
   "linux": true,
@@ -239,7 +239,32 @@
                   "pr": "Marque para obter dados extras dos Assets"
               },
               "id": "extra_data_",
-              "css": "col-md-6"
+              "css": "col-md-4"
+          },
+          {
+              "type": "checkbox",
+              "placeholder": {
+                  "es": "True",
+                  "en": "True",
+                  "pr": "True"
+              },
+              "title": {
+                  "es": "Obtener assets globales:",
+                  "en": "Obtain global assets:",
+                  "pr": "Obter assets globais:"
+              },
+              "description": {
+                  "es": "Marca para obtener assets globales, sin instancia. Solo necesario si se hace el Login mediante el archivo.ini",
+                  "en": "Check to obtain global assets without instance. Only necessary if login is done via file.ini",
+                  "pr": "Marque para obter assets globais, sem instância. Só necessário se o login for feito via arquivo.ini"
+              },
+              "help":{
+                "es": "Solo necesario si se hace el Login mediante el archivo.ini",
+                "en": "Only necessary if login is done via file.ini",
+                "pr": "Só necessário se o login for feito via arquivo.ini"
+              },
+              "id": "global_assets_",
+              "css": "col-md-4"
           },
           {
             "type": "input",
@@ -265,7 +290,7 @@
             },
             "remove_vars": true,
             "id": "var_",
-            "css": "col-md-6"
+            "css": "col-md-4"
           }
         ]
       },

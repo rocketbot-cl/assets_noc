@@ -21,7 +21,7 @@ To install the module in Rocketbot Studio, it can be done in two ways:
 1. Login NOC
 Login NOC using credentials such as e-mail and password, API Key and noc.ini file.
 
-2. Get an Specific Asset
+2. Get a Specific Asset
 Obtains the specific asset that is indicated
 
 3. Get All Assets

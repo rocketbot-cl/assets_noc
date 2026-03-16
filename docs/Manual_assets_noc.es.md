@@ -45,6 +45,7 @@ Obtiene el asset especifico que se le indique
 |Token del proceso|Token del proceso. Si se especifica, hay que tambien especificar la key de instancia.|27FEXKIXFRFDUNVD|
 |Key de Instancia|Key de instancia del proceso|6241c3a1dd96f8f92f|
 |Obtener datos adicionales|Marca para obtener datos extra de los Assets|True|
+|Obtener assets globales|Marca para obtener assets globales, sin instancia. Solo necesario si se hace el Login mediante el archivo.ini|True|
 |Asignar resultado a Variable|Variable donde se guardara el resultado. Nombre de variable sin llaves {}|Variable|
 
 ### Obtener Todos los Assets
