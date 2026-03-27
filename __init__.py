@@ -127,14 +127,12 @@ def get_process_token_and_instance_key_from_ids(process_id, instance_id):
         raise Exception(res.json()['message'])
 
 #instance_key_ini may not be defined
-#Instance_key will become instance_key_ini if the user is not looking for global assets and did not specified the instance key
 def select_instance_key(instance_key, is_looking_for_global_assets):
         try: 
-            if instance_key_ini and not (instance_key and is_looking_for_global_assets):
+            if instance_key_ini and not instance_key:
                 return instance_key_ini
-            else:
-                return instance_key
-        except:
+            
+        finally:
             return instance_key
         
 
@@ -230,11 +228,8 @@ if module == "getData":
     process_token = GetParams("process_")
     instance_key = GetParams("instance_")
     extra_data = GetParams("extra_data_")
-    is_global_assets = GetParams("global_assets_")
 
-
-    instance_key = select_instance_key(instance_key=instance_key, is_looking_for_global_assets=is_global_assets)
-
+    instance_key = select_instance_key(instance_key=instance_key)
     try:
         data = {'name': name_, 'instance': instance_key,}
         if process_token:
