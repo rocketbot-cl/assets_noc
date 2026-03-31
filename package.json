@@ -239,32 +239,7 @@
                   "pr": "Marque para obter dados extras dos Assets"
               },
               "id": "extra_data_",
-              "css": "col-md-4"
-          },
-          {
-              "type": "checkbox",
-              "placeholder": {
-                  "es": "True",
-                  "en": "True",
-                  "pr": "True"
-              },
-              "title": {
-                  "es": "Obtener assets globales:",
-                  "en": "Obtain global assets:",
-                  "pr": "Obter assets globais:"
-              },
-              "description": {
-                  "es": "Marca para obtener assets globales, sin instancia. Solo necesario si se hace el Login mediante el archivo.ini",
-                  "en": "Check to obtain global assets without instance. Only necessary if login is done via file.ini",
-                  "pr": "Marque para obter assets globais, sem instância. Só necessário se o login for feito via arquivo.ini"
-              },
-              "help":{
-                "es": "Solo necesario si se hace el Login mediante el archivo.ini",
-                "en": "Only necessary if login is done via file.ini",
-                "pr": "Só necessário se o login for feito via arquivo.ini"
-              },
-              "id": "global_assets_",
-              "css": "col-md-4"
+              "css": "col-md-6"
           },
           {
             "type": "input",
@@ -290,7 +265,7 @@
             },
             "remove_vars": true,
             "id": "var_",
-            "css": "col-md-4"
+            "css": "col-md-6"
           }
         ]
       },

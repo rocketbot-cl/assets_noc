@@ -127,7 +127,7 @@ def get_process_token_and_instance_key_from_ids(process_id, instance_id):
         raise Exception(res.json()['message'])
 
 #instance_key_ini may not be defined
-def select_instance_key(instance_key, is_looking_for_global_assets):
+def select_instance_key(instance_key):
         try: 
             if instance_key_ini and not instance_key:
                 return instance_key_ini
