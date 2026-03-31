@@ -132,7 +132,9 @@ def select_instance_key(instance_key):
             if instance_key_ini and not instance_key:
                 return instance_key_ini
             
-        finally:
+            return instance_key
+            
+        except:
             return instance_key
         
 
