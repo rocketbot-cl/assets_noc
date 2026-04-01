@@ -3,23 +3,23 @@
 
 
 # Assets_NOC
-  
-Módulo para recuperação de assets do Rocketbot NOC.  
+
+Módulo para recuperação de assets do Rocketbot NOC.
 
 *Read this in other languages: [English](Manual_assets_noc.md), [Português](Manual_assets_noc.pr.md), [Español](Manual_assets_noc.es.md)*
-  
+
 ![banner](imgs/Banner_assets_noc.png)
 ## Como instalar este módulo
-  
+
 Para instalar o módulo no Rocketbot Studio, pode ser feito de duas formas:
 1. Manual: __Baixe__ o arquivo .zip e descompacte-o na pasta módulos. O nome da pasta deve ser o mesmo do módulo e dentro dela devem ter os seguintes arquivos e pastas: \__init__.py, package.json, docs, example e libs. Se você tiver o aplicativo aberto, atualize seu navegador para poder usar o novo módulo.
-2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.  
+2. Automático: Ao entrar no Rocketbot Studio na margem direita você encontrará a seção **Addons**, selecione **Install Mods**, procure o módulo desejado e aperte instalar.
 
 
 ## Descrição do comando
 
 ### Login NOC
-  
+
 Faça login no NOC usando credenciais como e-mail e senha, chave de API e arquivo noc.ini.
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
@@ -29,18 +29,48 @@ Faça login no NOC usando credenciais como e-mail e senha, chave de API e arquiv
 |Atribuir resultado à variável|Variável onde será armazenado o estado da conexão, retorna True se for bem sucedida ou False caso contrário|Variable|
 
 ### Obter Asset específico
-  
+
 Obtém o ativo específico indicado
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Nome do Asset|Nome do asset a ser obtido|Teste|
-|Token do processo|Deixe em branco se for um ativo global|27FEXKIXFRFDUNVD|
-|Key de Instância|ID de instância do processo|6241c3a1dd96f8f92f|
+|Token do processo|Token do processo. Se especificado, você também precisa especificar a chave da instância.|27FEXKIXFRFDUNVD|
+|Key de Instância|Key de instância do processo|6241c3a1dd96f8f92f|
+|Obter dados extras|Marque para obter dados extras dos Assets|True|
+|Obter assets globais|Marque para obter assets globais, sem instância. Só necessário se o login for feito via arquivo.ini|True|
 |Atribuir resultado a variável|Variável onde o resultado será salvo. Nome da variável sem chaves|Variável|
 
 ### Obter todos os Assets
-  
+
 Obtém todos os Assets e os atribui a variável correspondente
 |Parâmetros|Descrição|exemplo|
 | --- | --- | --- |
 |Atribua resultado à Variável|Variável onde o resultado será salvo. Nome da variável sem chaves|Variável|
+|Obter dados extras|Marque para obter dados extras dos Assets|True|
+
+### Adicionar Asset
+
+Adiciona um Asset ao seu Orquestrador
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Nome do Asset|Nome do Asset a ser adicionado|NovoAsset|
+|Token do processo|Token do processo ao qual o Asset será adicionado|27FEXKIXFRFDUNVD|
+|Key de Instância|Key da instância ao qual o Asset será adicionado|6241c3a1dd96f8f92f|
+|Mails dos usuários|Lista de mails dos usuários aos quais o Asset será adicionado|[MailUsuario1, MailUsuario2, ...]|
+|Tipo do Asset|Tipo do Asset a ser adicionado|Geral|
+|Valor do Asset|Valor do Asset a ser adicionado|Um valor|
+|Atribuir resultado a variável|Variável onde o resultado será salvo. Nome da variável sem chaves|Variável|
+
+### Modifica o ativo específico
+
+Modifica o ativo específico indicado
+|Parâmetros|Descrição|exemplo|
+| --- | --- | --- |
+|Id do Asset|Id do Asset a ser modificado|Id_Asset|
+|Novo nome do Asset|Novo nome do Asset modificado. Se houver outro Asset com o mesmo nome, o asset não pode ser modificado sem também alterar o nome|NovoAsset|
+|Novo token do processo|Token do processo que o Asset terá|27FEXKIXFRFDUNVD|
+|Nova key da instância|Key da instância que o Asset terá|6241c3a1dd96f8f92f|
+|Novos mails dos usuários|Lista de Mails dos usuários que terão o Asset|[MailUsuario1, MailUsuario2, ...]|
+|Novo tipo do Asset|Novo tipo do Asset a ser modificado|Geral|
+|Novo valor do Asset|Novo valor do Asset a ser modificado|Um valor|
+|Atribuir resultado a variável|Variável onde o resultado será salvo. Nome da variável sem chaves|Variável|

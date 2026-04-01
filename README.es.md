@@ -3,29 +3,35 @@
 
 
 # Assets_NOC
-  
-Módulo para obtener asset de Rocketbot NOC  
+
+Módulo para obtener asset de Rocketbot NOC
 
 *Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
 ## Como instalar este módulo
-  
+
 Para instalar el módulo en Rocketbot Studio, se puede hacer de dos formas:
 1. Manual: __Descargar__ el archivo .zip y descomprimirlo en la carpeta modules. El nombre de la carpeta debe ser el mismo al del módulo y dentro debe tener los siguientes archivos y carpetas: \__init__.py, package.json, docs, example y libs. Si tiene abierta la aplicación, refresca el navegador para poder utilizar el nuevo modulo.
-2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.  
+2. Automática: Al ingresar a Rocketbot Studio sobre el margen derecho encontrara la sección de **Addons**, seleccionar **Install Mods**, buscar el modulo deseado y presionar install.
 
 
 ## Overview
 
 
-1. Login NOC  
+1. Login NOC
 Inicie sesión en NOC utilizando e-mail o contraseña, clave API y archivo noc.ini.
 
-2. Obtener Asset Específico  
+2. Obtener Asset Específico
 Obtiene el asset especifico que se le indique
 
-3. Obtener Todos los Assets  
-Obtiene todos los Assets y los asigna a la variable correspondiente  
+3. Obtener Todos los Assets
+Obtiene todos los Assets y los asigna a la variable correspondiente
+
+4. Agregar Asset
+Agrega un Asset a tu Orquestador
+
+5. Modificar Asset
+Modifica el asset especifico que se le indique
 
 
 
@@ -41,6 +47,6 @@ Obtiene todos los Assets y los asigna a la variable correspondiente
 ### Dependencies
 
 ### License
-  
-![MIT](https://camo.githubusercontent.com/107590fac8cbd65071396bb4d04040f76cde5bde/687474703a2f2f696d672e736869656c64732e696f2f3a6c6963656e73652d6d69742d626c75652e7376673f7374796c653d666c61742d737175617265)  
-[MIT](http://opensource.org/licenses/mit-license.ph)
+
+![MIT](https://img.shields.io/github/license/instaloader/instaloader.svg)
+[MIT](https://opensource.org/license/mit)
